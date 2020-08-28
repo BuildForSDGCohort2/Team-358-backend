@@ -1,16 +1,15 @@
 language: node_js
 node_js:
-- 7
-- 8
-- 10
+    - 12
 script:
-- npm install
+    - npm install
+    - npm start
 deploy:
-  provider: heroku
-  api_key:
-    secure: EPr9IR1QA06f8G3M4I/Z6MSzmu9cnBfg9Rzbv07IpXIEGJ0Trvw3jgtblUPI3ab4I3dePjcXl4jG4mmFMST/FMSUr0PUWm0vrRsqproSFu6ygisdRgtueXPEiRhfP1DCrBaC281jPTQvoPovgJrytjHWD+SYUofyzCh/ClWO7ZmEmtAzEvt5AcUVlhQVu13exSbIqmeEF6c0aJsF9rqzxIeYeAZFPg34zN54ZZqmdtfnjMbANw57wlG+c+buaAIolGR9/+kgoKnqHRNNYxnjV/oJDqtppBAKor9Av5EyZp9BZA0MjyIhduv4i1hyonKJ20844wElG5ikC3D9L3xm9tdB1n3SKD9x9uHIpSJvNxE00hHvxbDoWbhkQlC0dLNLIV5+1Jcv7R/uC1at+iMbEdtVGGcou2DJQRA7soyzksSQ6pgI8EHO3GudVW4RCqIfazicJmc6oTH9wyIoy2v3DftDmEoOaxj9da9XCsZ9HtL95sEFlgGEZbxpZ3EoW4JdPijH0n85VSjP3l7V93TRKabc3+1mm3StLuelKjKtPPeAmfe3EGbrJLpmMfD629jYA+sxFMCiHgsHmLnWZnU3T9MMEtGPkGqJfIjn0b1vVeoTIgw0zJNnkofhiR01q5sLErOc7R/mhfgcnt7FPz9P1Ig2IZchxUQOSVcptA80bjo=
-  app: Team-358-backend
-  on:
-    repo: BuildForSDGCohort2/Team-358-backend
-    branch: develop
-  skip_cleanup: 'true'
+    provider: heroku
+    api_key:
+        secure: EPr9IR1QA06f8G3M4I/Z6MSzmu9cnBfg9Rzbv07IpXIEGJ0Trvw3jgtblUPI3ab4I3dePjcXl4jG4mmFMST/FMSUr0PUWm0vrRsqproSFu6ygisdRgtueXPEiRhfP1DCrBaC281jPTQvoPovgJrytjHWD+SYUofyzCh/ClWO7ZmEmtAzEvt5AcUVlhQVu13exSbIqmeEF6c0aJsF9rqzxIeYeAZFPg34zN54ZZqmdtfnjMbANw57wlG+c+buaAIolGR9/+kgoKnqHRNNYxnjV/oJDqtppBAKor9Av5EyZp9BZA0MjyIhduv4i1hyonKJ20844wElG5ikC3D9L3xm9tdB1n3SKD9x9uHIpSJvNxE00hHvxbDoWbhkQlC0dLNLIV5+1Jcv7R/uC1at+iMbEdtVGGcou2DJQRA7soyzksSQ6pgI8EHO3GudVW4RCqIfazicJmc6oTH9wyIoy2v3DftDmEoOaxj9da9XCsZ9HtL95sEFlgGEZbxpZ3EoW4JdPijH0n85VSjP3l7V93TRKabc3+1mm3StLuelKjKtPPeAmfe3EGbrJLpmMfD629jYA+sxFMCiHgsHmLnWZnU3T9MMEtGPkGqJfIjn0b1vVeoTIgw0zJNnkofhiR01q5sLErOc7R/mhfgcnt7FPz9P1Ig2IZchxUQOSVcptA80bjo=
+    app: Team-358-backend
+    on:
+        repo: BuildForSDGCohort2/Team-358-backend
+        branch: develop
+    skip_cleanup: 'true'
