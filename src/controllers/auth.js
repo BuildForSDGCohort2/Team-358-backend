@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const {salt} = require('../utils/config');
 
 exports.signup = (req, res, next) => {
 	const re = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
@@ -57,9 +56,13 @@ exports.login = (req, res, next) => {
 						res.status(401).json({message: 'Wrong credentials! Please, try again.'});
 					}
 					if (response) {
-						const token = jwt.sign({email: user[0].email, userId: user[0]._id, username: user[0].username}, salt, {
-							expiresIn: '2h',
-						});
+						const token = jwt.sign(
+							{email: user[0].email, userId: user[0]._id, username: user[0].username},
+							process.env.MONGO_ATLAS_PW,
+							{
+								expiresIn: '2h',
+							}
+						);
 						return res.status(200).json({message: 'Logged In', token});
 					}
 					res.status(401).json({message: 'Wrong credentials! Please, try again.'});
