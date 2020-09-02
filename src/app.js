@@ -1,37 +1,38 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const morgan = require('morgan');
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import userRoutes from './routes/userRoutes.js';
+import home from './routes/home.js';
 
-// initialize the express server
+
 const app = express();
 
-// set cors
 app.use(cors());
-// you can parse incoming Request Object if object, with nested objects, or generally any type.
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(morgan('dev'));
 
-const authRoutes = require('./routes/auth');
+// BODY PARSER MIDDLEWARES
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
-app.get('/', function (req, res) {
-	res.send('Welcome!');
-});
+// MORGAN MIDDLERWARE
+app.use(helmet());
 
-app.use('/auth', authRoutes);
-app.use((req, res, next) => {
-	const error = new Error('Not found');
-	error.status = 404;
-	next(error);
-});
+// HELMET MIDDLERWARE
+let morganFunction = function (tokens, req, res) {
+	return [
+		tokens.method(req, res),
+		tokens.url(req, res),
+		tokens.status(req, res),
+		tokens.res(req, res, 'content-length'),
+		'-',
+		tokens['response-time'](req, res),
+		'ms',
+	].join(' ');
+};
+app.use(morgan(morganFunction));
 
-app.use((error, req, res, next) => {
-	res.status(error.status || 500).json({
-		error: {
-			message: error.message,
-		},
-	});
-});
+// DEFINE ROUTES
+home(app);
+userRoutes(app);
 
-module.exports = app;
+export default app;
