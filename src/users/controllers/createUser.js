@@ -18,8 +18,6 @@ export default async function createUser(httpRequest) {
 			data: registeredUser.data,
 		};
 	} catch (e) {
-		// TODO: Error logging
-		console.log(e);
 		return {
 			headers,
 			status: 'error',

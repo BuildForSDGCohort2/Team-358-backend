@@ -34,7 +34,6 @@ export default async function addUser(ref, data) {
 				data: makeUser.data,
 			});
 		} catch (error) {
-			console.log(error);
 			return Object.freeze({
 				error: true,
 				message: error,
