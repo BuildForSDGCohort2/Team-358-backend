@@ -1,7 +1,10 @@
+const express = require('express');
+const router = express.Router();
+
 function homeController(req, res) {
 	res.send('Welcome');
 }
 
-export default (app) => {
-	app.get('/', homeController);
-};
+router.get('/', homeController);
+
+module.exports = router;

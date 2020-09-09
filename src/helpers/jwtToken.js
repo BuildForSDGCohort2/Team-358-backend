@@ -1,12 +1,13 @@
-import jwt from 'jsonwebtoken';
-export default {
+const jwt = require('jsonwebtoken');
+const {secret} = require('../config/config');
+module.exports = {
 	generate: (payload) => {
 		let token = jwt.sign(
 			{
 				exp: Math.floor(Date.now() / 1000) + 60 * 60,
 				payload,
 			},
-			process.env.TOKEN_SECRET
+			secret
 		);
 
 		return token;
@@ -18,7 +19,7 @@ export default {
 				payload,
 				iat: Math.floor(Date.now() / 1000) - 30,
 			},
-			process.env.TOKEN_SECRET
+			secret
 		);
 
 		return token;
@@ -26,7 +27,7 @@ export default {
 
 	verify: (token) => {
 		try {
-			var decoded = jwt.verify(token, process.env.TOKEN_SECRET);
+			var decoded = jwt.verify(token, secret);
 			return decoded;
 		} catch (err) {
 			throw new Error(err);

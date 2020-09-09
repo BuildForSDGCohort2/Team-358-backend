@@ -1,23 +1,16 @@
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import helmet from 'helmet';
-import userRoutes from './routes/userRoutes.js';
-import home from './routes/home.js';
-
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const authRoutes = require('../routes/auth');
+const home = require('../routes/home');
 
 const app = express();
-
 app.use(cors());
-
-// BODY PARSER MIDDLEWARES
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-// MORGAN MIDDLERWARE
 app.use(helmet());
 
-// HELMET MIDDLERWARE
 let morganFunction = function (tokens, req, res) {
 	return [
 		tokens.method(req, res),
@@ -31,8 +24,7 @@ let morganFunction = function (tokens, req, res) {
 };
 app.use(morgan(morganFunction));
 
-// DEFINE ROUTES
-home(app);
-userRoutes(app);
+app.use("/", home)
+app.use("/", authRoutes)
 
-export default app;
+module.exports = app;
