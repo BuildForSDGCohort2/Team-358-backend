@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const authRoutes = require('../routes/auth');
 const home = require('../routes/home');
+const videos = require('../routes/videos');
 
 const app = express();
 app.use(cors());
@@ -26,5 +27,6 @@ app.use(morgan(morganFunction));
 
 app.use("/", home)
 app.use("/", authRoutes)
+app.use("/", videos)
 
 module.exports = app;
