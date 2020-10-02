@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const {PASSWORD, EMAIL_ADDRESS} = require('../config/config');
-// const testEmail = 'laryhug209@yahoo.com';
-const testEmail = 'oluwaferanmiadetunji@gmail.com';
+const testEmail = 'laryhug209@yahoo.com';
+// const testEmail = 'oluwaferanmiadetunji@gmail.com';
 
 module.exports = (req, res) => {
 	const transporter = nodemailer.createTransport({

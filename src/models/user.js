@@ -12,6 +12,7 @@ const UserSchema = new Schema(
 			unique: true,
 		},
 		password: {type: String},
+		pushToken: {type: String},
 	},
 	{
 		timestamps: true,
